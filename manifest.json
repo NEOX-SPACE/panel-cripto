@@ -1,6 +1,6 @@
 {
-  "name": "SHUBI LO HIZO",
-  "short_name": "SHUBI",
+  "name": "SHUBICOIN",
+  "short_name": "SHUBICOIN",
   "description": "Cotizaciones de criptomonedas en vivo",
   "start_url": "./index.html",
   "display": "standalone",
