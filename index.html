@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHUBICOIN</title>
+<title>SHUBI LO HIZO</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#0B1220">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 
@@ -35,6 +39,7 @@
 
   a { color: inherit; }
 
+  /* ---- Ticker tape ---- */
   .ticker-wrap {
     border-bottom: 1px solid var(--line);
     background: var(--surface);
@@ -65,6 +70,7 @@
     to { transform: translateX(-50%); }
   }
 
+  /* ---- Header ---- */
   header {
     max-width: 1080px;
     margin: 0 auto;
@@ -137,6 +143,7 @@
   .refresh-btn:hover { border-color: var(--gold); color: var(--gold); }
   .refresh-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
+  /* ---- Grid ---- */
   main {
     max-width: 1080px;
     margin: 0 auto;
@@ -244,7 +251,7 @@
 
   <header>
     <p class="eyebrow">Mercado en vivo</p>
-    <h1>SHUBI <span class="accent">CRIPTO</span></h1>
+    <h1>Panel <span class="accent">Cripto</span></h1>
     <p class="sub">Cotizaciones actualizadas directo desde CoinGecko. Se refresca solo cada 30 segundos, o forzalo cuando quieras.</p>
     <div class="meta-row">
       <span><span id="status-dot"></span><span id="status-text">conectando…</span></span>
@@ -331,6 +338,7 @@
       `;
     });
 
+    // Duplicate ticker content for seamless loop
     tickerTrack.innerHTML = tickerHtml + tickerHtml;
   }
 
@@ -354,6 +362,12 @@
   refreshBtn.addEventListener('click', fetchPrices);
   fetchPrices();
   setInterval(fetchPrices, 30000);
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(err => console.log('SW error:', err));
+    });
+  }
 </script>
 
 </body>
